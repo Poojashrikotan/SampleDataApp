@@ -1,18 +1,28 @@
 
 import React from 'react';
 import './App.css';
+
 import AllContent from './modules/AllContent';
-import { Provider } from 'react-redux';
-import { Store } from './Redux/Store';
+import Home from './components/Home';
+import Product from './components/Product';
+import { Routes, Route } from "react-router-dom"
+
+
+
 
 function App() {
   return (
    <div >
-    <Provider store={Store}>
-    <AllContent></AllContent>
-    </Provider>
-     
+       <AllContent></AllContent>
+       <Product></Product>
+       <Routes>
+       <Route exact path="/" component={Home} />
+        <Route path="/product" component={Product} />
+      </Routes>
+    
+ 
    </div>
+   
   );
 }
 

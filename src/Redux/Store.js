@@ -6,6 +6,3 @@ export const Store=configureStore({
         data:productdata,
     }
 });
-
-
-// https://fakestoreapi.com/products
