@@ -2,7 +2,55 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Dependency Installation
+run the commands in terminal of VS Code in the projects folder
+
+# React Install
+npm install react react-dom
+
+# Tailwind install
+npm install react
+
+npm install -D tailwindcss
+npx tailwindcss init
+
+Add the paths to all of your template files in your tailwind.config.js file.
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ["./src/**/*.{html,js}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+
+Add the @tailwind directives for each of Tailwind’s layers to your main CSS file.
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+# React-Redux 
+
+# NPM
+npm install @reduxjs/toolkit
+npm install react-redux
+
+# Yarn
+yarn add @reduxjs/toolkit
+yarn add redux
+
+# React-Router 
+
+# NPM
+npm install react-router-dom
+
+# Yarn
+yarn add react-router-dom
+
 ## Available Scripts
+
 
 In the project directory, you can run:
 
