@@ -3,29 +3,31 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect,useState } from "react";
  import { fetchproduct } from "../../Redux/Slice/productdata";
 import { Route,Routes } from 'react-router-dom'
+import { useParams } from 'react-router-dom';
 
 
 export default function Product() {
 
-  
+  const param=useParams();
+ //console.log(param);
     const dispatch = useDispatch();
     const items = useSelector((state) => state.data);
     useEffect(() => {
         let dispatchedata = dispatch(fetchproduct());
-        console.log("UseEffect");
-        const filteredData = items.data?.filter(item => item.id === 1);
+        //console.log(items.title);
+       const filteredData = items.data?.filter((item) =>item.id===param.id) ;
         console.log(filteredData);
-      }, []);
+      },[]);
   return (
     <>
-    {/*  items.data?.filter(item => {item.id === 1}return(  */}
-    <section className="text-gray-600 body-font overflow-hidden">
+    { items.data?.map(item => {return(  
+    <section key={item.id} className="text-gray-600 body-font overflow-hidden">
     <div className="container px-5 py-24 mx-auto">
       <div className="lg:w-4/5 mx-auto flex flex-wrap">
-        <img alt="ecommerce" className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="https://dummyimage.com/400x400"/>
+        <img alt="product" className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src={item.image}/>
         <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-          <h2 className="text-sm title-font text-gray-500 tracking-widest"></h2>
-          <h1 className="text-gray-900 text-3xl title-font font-medium mb-1"></h1>
+          <h2 className="text-sm title-font text-gray-500 tracking-widest">{item.title}</h2>
+          <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">{item.description}</h1>
           <div className="flex mb-4">
             <span className="flex items-center">
               <svg fill="currentColor" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 text-purple-500" viewBox="0 0 24 24">
@@ -63,7 +65,7 @@ export default function Product() {
               </a>
             </span>
           </div>
-          <p className="leading-relaxed"></p>
+          <p className="leading-relaxed">{item.description}</p>
           <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
             <div className="flex">
               <span className="mr-3">Color</span>
@@ -85,19 +87,20 @@ export default function Product() {
                     <path d="M6 9l6 6 6-6"></path>
                   </svg>
                 </span>
+                <span className="title-font font-medium text-2xl text-gray-900">  Count:  {item.rating.count} </span> 
               </div>
             </div>
           </div>
           <div className="flex">
-            <span className="title-font font-medium text-2xl text-gray-900">Rs</span>
-        
+            <span className="title-font font-medium text-2xl text-gray-900"> {item.price}Rs </span>
+           
           </div>
         </div>
       </div>
     </div>
   </section>
   
-   {/* )})} */}
+    )})}
    
   </>
   )

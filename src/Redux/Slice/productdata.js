@@ -27,7 +27,7 @@ export const fetchproduct=createAsyncThunk("productdata",async(args,{rejectWithV
         builder.addCase(fetchproduct.fulfilled,(state,action)=>{
             state.isloading=false;
             state.data=action.payload;
-            console.log(state.data);
+            console.log(state.data);    
         })
         builder.addCase(fetchproduct.rejected,(state,action)=>{
             console.log("Error",action.payload);
