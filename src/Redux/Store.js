@@ -1,8 +1,8 @@
-import {configureStore } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import productdata from "./Slice/productdata";
 
-export const Store=configureStore({
-    reducer:{
-        data:productdata,
-    }
+export const Store = configureStore({
+  reducer: {
+    data: productdata,
+  },
 });
