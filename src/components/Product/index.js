@@ -10,38 +10,44 @@ export default function Product() {
   //console.log(param);
   const dispatch = useDispatch();
   const items = useSelector((state) => state.data);
+
+  const filteredData = items.data?.filter((item) => item.id == param.id);
+  console.log(filteredData);
+
+  // const fillcolor = items.data.rating.rate;
+  // console.log(fillcolor);
   useEffect(() => {
     let dispatchedata = dispatch(fetchproduct());
     //console.log(items.title);
-    const filteredData = items.data?.filter((item) => item.id === param.id);
-    console.log(filteredData);
-  }, []);
+  }, [items.id]);
   return (
     <>
-      {items.data?.map((item) => {
+      {filteredData?.map((item) => {
         return (
           <section
             key={item.id}
             className="text-gray-600 body-font overflow-hidden"
           >
-            <div className="container px-5 py-24 mx-auto">
-              <div className="lg:w-4/5 mx-auto flex flex-wrap">
+            <div className="container  px-5 py-5 mx-auto">
+              <div className="lg:w-2/3 mx-auto flex flex-wrap">
                 <img
                   alt="product"
-                  className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
+                  className="lg:w-1/2 w-full lg:h-50 object-cover object-center rounded"
                   src={item.image}
                 />
                 <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                   <h2 className="text-sm title-font text-gray-500 tracking-widest">
-                    {item.title}
+                    {item.category}
                   </h2>
                   <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
-                    {item.description}
+                    {item.title}
                   </h1>
                   <div className="flex mb-4">
                     <span className="flex items-center">
+                      {" "}
+                      {item.rating.rate}
                       <svg
-                        fill="currentColor"
+                        fill="none"
                         stroke="currentColor"
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -49,6 +55,7 @@ export default function Product() {
                         className="w-4 h-4 text-purple-500"
                         viewBox="0 0 24 24"
                       >
+                        {" "}
                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
                       </svg>
                       <svg
@@ -95,7 +102,9 @@ export default function Product() {
                       >
                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
                       </svg>
-                      <span className="text-gray-600 ml-3"></span>
+                      <span className="text-gray-600 ml-3">
+                        ({item.rating.count} Reviews)
+                      </span>
                     </span>
                     <span className="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s">
                       <a className="text-gray-500">
@@ -166,18 +175,26 @@ export default function Product() {
                             <path d="M6 9l6 6 6-6"></path>
                           </svg>
                         </span>
-                        <span className="title-font font-medium text-2xl text-gray-900">
-                          {" "}
-                          Count: {item.rating.count}{" "}
-                        </span>
                       </div>
                     </div>
                   </div>
-                  <div className="flex">
-                    <span className="title-font font-medium text-2xl text-gray-900">
+                  <div className="flex  ml-1">
+                    <span className="title-font  mr-5 font-medium text-2xl text-gray-900">
                       {" "}
-                      {item.price}Rs{" "}
+                      Price: {item.price}Rs{" "}
                     </span>
+                    <button class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+                      {" "}
+                      Buy it Now
+                    </button>
+                    <button class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+                      Add to Cart
+                    </button>
+
+                    {/* <span className="title-font font-medium text-2xl text-gray-900">
+                      {" "}
+                      Count: {item.rating.count}{" "}
+                    </span> */}
                   </div>
                 </div>
               </div>

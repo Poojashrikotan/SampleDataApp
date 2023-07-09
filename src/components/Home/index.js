@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchproduct } from "../../Redux/Slice/productdata";
 import { Link } from "react-router-dom";
 
-
 export default function Home() {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.data);
@@ -27,7 +26,9 @@ export default function Home() {
             racks, searching for that perfect item that will make your heart
             skip a beat.
           </p>
-          <span>Scroll Down Faster</span>
+          <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
+            Scroll Down Faster...!!!
+          </h1>
         </div>
         <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
           <img
@@ -46,22 +47,22 @@ export default function Home() {
               return (
                 <div
                   key={item.id}
-                  className="lg:w-1/4 md:w-1/2 p-4 w-full h-fullbg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200"
+                  className="lg:w-1/4 md:w-1/2 p-4 w-full h-55 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200"
                 >
                   <Link to={`/product/${item.id}`}>
-                    <div className="block relative h-48 rounded overflow-hidden">
+                    <div className="block relative h-48  rounded overflow-hidden">
                       <img
                         alt="ecommerce"
                         src={item.image}
-                        className="object-cover object-center block  rounded"
+                        className="object-Cover object-center block  rounded"
                       />
                     </div>
                     <div className="mt-4">
                       <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-                        {item.title}
+                        {item.category}
                       </h3>
                       <h2 className="text-gray-900 title-font text-lg font-medium">
-                        {item.category}
+                        {item.title}
                       </h2>
                       <p className="mt-1">{item.price}Rs</p>
                     </div>
