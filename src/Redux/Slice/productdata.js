@@ -13,15 +13,17 @@ export const fetchproduct = createAsyncThunk(
   }
 );
 
+
 const productdata = createSlice({
   name: "productdata",
+  
   initialState: {
     isloading: false,
     data: null,
     iserror: false,
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchproduct.pending, (state, action) => {
+    builder.addCase(fetchproduct.pending, (state) => {
       state.isloading = true;
     });
 

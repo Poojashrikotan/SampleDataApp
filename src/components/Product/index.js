@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchproduct } from "../../Redux/Slice/productdata";
-
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 export default function Product() {
@@ -10,7 +10,6 @@ export default function Product() {
   //console.log(param);
   const dispatch = useDispatch();
   const items = useSelector((state) => state.data);
-
   const filteredData = items.data?.filter((item) => item.id == param.id);
   console.log(filteredData);
 
@@ -18,8 +17,9 @@ export default function Product() {
   // console.log(fillcolor);
   useEffect(() => {
     let dispatchedata = dispatch(fetchproduct());
+
     //console.log(items.title);
-  }, [items.id]);
+  }, []);
   return (
     <>
       {filteredData?.map((item) => {
@@ -183,13 +183,16 @@ export default function Product() {
                       {" "}
                       Price: {item.price}Rs{" "}
                     </span>
+
                     <button class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
                       {" "}
                       Buy it Now
                     </button>
-                    <button class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
-                      Add to Cart
-                    </button>
+                    <Link to={`/cartpage/${item.id}`}>
+                      <button class="flex ml-3 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+                        Add to Cart
+                      </button>
+                    </Link>
 
                     {/* <span className="title-font font-medium text-2xl text-gray-900">
                       {" "}
